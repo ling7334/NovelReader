@@ -10,8 +10,6 @@
 export default {
   name: 'index',
   created () {
-    // 登陆
-    // 获取小说列表
     this.axios.get('/novel')
       .then((response) => {
         this.novels = response.data
@@ -33,5 +31,5 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
+<style lang="scss" scoped>
 </style>
