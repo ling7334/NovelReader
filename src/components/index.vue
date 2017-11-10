@@ -7,7 +7,7 @@
           <md-card class="card-tile" md-with-hover>
             <md-card-header>
               <md-card-media md-medium>
-                <img src="../assets/default.jpg" alt="default" height="150" width="120">
+                <img :src="getImg(novel.img)" alt="default" height="150" width="120">
               </md-card-media>
               <md-card-header-text>
                 <div class="md-title">{{ novel.title }}</div>
@@ -50,6 +50,11 @@ export default {
       title: 'Novel Reader',
       user: null,
       novels: []
+    }
+  },
+  methods: {
+    getImg (path) {
+      return path || 'static/images/default.jpg'
     }
   }
 }
