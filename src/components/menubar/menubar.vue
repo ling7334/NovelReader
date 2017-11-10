@@ -94,34 +94,45 @@ export default {
     serchNovel () {
       this.$router.push({name: 'search', params: {novelname: this.serchNovelName}})
     },
+    logout () {
+      this.$session.destroy()
+      this.user = null
+    },
+    setSession (data) {
+      switch (data.Status) {
+        case 200:
+          this.$session.set('userid', data.userid)
+          this.$session.set('token', data.token)
+          this.$session.set('refreshToken', data.refreshToken)
+          this.user = {}
+          this.user.username = data.username
+          this.user.email = data.email
+          this.user.hash = data.hash
+          break
+        case 300:
+          this.refresh()
+          break
+        default:
+          alert(data.StatusText)
+          console.log(data)
+          break
+      }
+    },
     login (id, pass) {
       this.axios.post('/login', {userid: id, password: pass})
         .then((response) => {
-          this.user = response.data
-          if (response.data.loginStatus === 200) {
-            this.$session.set('userid', response.data.userid)
-            this.$session.set('token', response.data.token)
-            this.$session.set('refreshToken', response.data.refreshToken)
-          } else {
-            alert(response.data.loginStatusText)
-            console.log(response)
-          }
+          this.setSession(response.data)
         })
         .catch((error) => {
           alert('无法登陆')
           console.log(error.message)
         })
     },
-    logout () {
-      this.$session.destroy()
-      this.user = null
-    },
     getUser () {
       if (this.$session.exists() && this.$session.has('userid') && this.$session.has('token')) {
         this.axios.get('/user', {params: {userid: this.$session.get('userid'), token: this.$session.get('token')}})
           .then((response) => {
-            this.user = response.data
-            console.log(response)
+            this.setSession(response.data)
           })
           .catch((error) => {
             alert('无法获取用户')
@@ -133,8 +144,7 @@ export default {
       if (this.$session.exists() && this.$session.has('userid') && this.$session.has('refreshToken')) {
         this.axios.get('/refresh', {params: {userid: this.$session.get('userid'), refreshToken: this.$session.get('refreshToken')}})
           .then((response) => {
-            this.user = response.data
-            console.log(response)
+            this.setSession(response.data)
           })
           .catch((error) => {
             alert('无法刷新token')
