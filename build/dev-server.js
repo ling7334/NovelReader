@@ -88,8 +88,8 @@ app.get('/user', (req, res) => {
   let params = urlModule.parse(req.url, true).query
   if (params.token === 'hv983h#ERTd$T#2o&GRvu9398') {
     res.send({
-      'loginStatus': 200,
-      'loginStatusText': 'OK',
+      'Status': 200,
+      'StatusText': 'OK',
       'userid': 1,
       'username': 'Flynn',
       'email': 'ling7334@gmail.com',
@@ -99,8 +99,8 @@ app.get('/user', (req, res) => {
     })
   } else {
     res.send({
-      'loginStatus': 400,
-      'loginStatusText': 'Token is invaild'
+      'Status': 400,
+      'StatusText': 'Token is invaild'
     })
   }
 })
@@ -108,7 +108,7 @@ app.get('/user', (req, res) => {
 app.post('/login', (req, res) => {
   if (req.body.userid === 1 && req.body.password === 'password') {
     res.send({
-      'loginStatus': 200,
+      'Status': 200,
       'loginStatusText': 'OK',
       'userid': 1,
       'username': 'Flynn',
@@ -119,8 +119,8 @@ app.post('/login', (req, res) => {
     })
   } else {
     res.send({
-      'loginStatus': 500,
-      'loginStatusText': 'Login Failed'
+      'Status': 500,
+      'StatusText': 'Login Failed'
     })
   }
 })
