@@ -1,6 +1,31 @@
 <template>
   <div class="index">
     <menubar :title="title" :list="novels"></menubar>
+    <div class="bookcase">
+      <md-layout md-gutter>
+        <md-layout md-flex-xsmall="100" md-flex-small="100" md-flex-medium="50" md-flex-large="33" md-flex-xlarge="25" v-for="novel in novels" :key="novel.id">
+          <md-card class="card-tile" md-with-hover>
+            <md-card-header>
+              <md-card-media md-medium>
+                <img src="../assets/default.jpg" alt="default" height="150" width="120">
+              </md-card-media>
+              <md-card-header-text>
+                <div class="md-title">{{ novel.title }}</div>
+                <div class="md-subhead">Author: {{ novel.author }}</div>
+                <div class="md-subhead">Last Read: {{ novel.lastread }}</div>
+                <div class="md-subhead">Lasest: {{ novel.lasest }}</div>
+                <div class="md-subhead">Update: {{ novel.update }}</div>
+              </md-card-header-text>
+            </md-card-header>
+
+            <md-card-actions>
+              <router-link tag="md-button" :to="novel.link">Read</router-link>
+              <md-button><md-icon class="md-accent">delete</md-icon></md-button>
+            </md-card-actions>
+          </md-card>
+        </md-layout>
+      </md-layout>
+    </div>
   </div>
 
 </template>
@@ -32,4 +57,12 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
+.bookcase{
+  margin: 5% 5% 5% 5%;
+}
+.card-tile{
+  margin-left: 1%;
+  margin-right: 1%;
+  overflow: hidden;
+}
 </style>

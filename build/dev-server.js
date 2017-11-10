@@ -75,12 +75,20 @@ app.use(bodyParser.json());
 // serve REST test resource
 app.get('/novel', (req, res) => res.send([{
   id: 1,
-  name: '笑傲江湖',
+  title: '笑傲江湖',
+  author: '金庸',
+  lastread: '第一章　灭门',
+  lasest: '第四十章　曲谐',
+  update: '1969年10月12日',
   link: {name: 'novel', params: {novelname: '笑傲江湖'}}
 },
 {
   id: 2,
-  name: '神雕侠侣',
+  title: '神雕侠侣',
+  author: '金庸',
+  lastread: '第01回　风月无情',
+  lasest: '第40回　华山之巅',
+  update: '1959年5月20日',
   link: {name: 'novel', params: {novelname: '神雕侠侣'}}
 }]))
 
