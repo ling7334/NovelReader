@@ -11,10 +11,10 @@
               </md-card-media>
               <md-card-header-text>
                 <div class="md-title">{{ novel.title }}</div>
-                <div class="md-subhead">Author: {{ novel.author }}</div>
-                <div class="md-subhead">Last Read: {{ novel.lastread }}</div>
-                <div class="md-subhead">Lasest: {{ novel.lasest }}</div>
-                <div class="md-subhead">Update: {{ novel.update }}</div>
+                <div class="md-subhead"><b>Author:</b> {{ novel.author }}</div>
+                <div class="md-subhead"><b>Last Read:</b> {{ novel.lastread }}</div>
+                <div class="md-subhead"><b>Lasest:</b> {{ novel.lasest }}</div>
+                <div class="md-subhead"><b>Update:</b> {{ novel.update }}</div>
               </md-card-header-text>
             </md-card-header>
 
@@ -68,6 +68,7 @@ export default {
 .card-tile{
   margin-left: 1%;
   margin-right: 1%;
-  overflow: hidden;
+  overflow:hidden;
+  text-overflow:ellipsis;
 }
 </style>
