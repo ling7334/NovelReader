@@ -6,35 +6,29 @@
 </template>
 
 <script>
-import menubar from '@/components/menubar/menubar'
 export default {
   name: 'novel',
-  components: { menubar },
-  props: ['novelname'],
+  created () {
+    this.axios.get('/novel')
+      .then((response) => {
+        this.novels = response.data
+        console.log(response)
+      })
+      .catch((error) => {
+        alert('无法获取小说列表')
+        console.log(error.message)
+      })
+  },
   data () {
     return {
-      searchNovel: '',
       title: 'Novel Reader',
-      user: {
-        name: 'Anonymous',
-        email: 'name@email.com',
-        hash: ''
-      },
-      novels: [{
-        id: 1,
-        name: '笑傲江湖',
-        link: {name: 'novel', params: {novelname: '笑傲江湖'}}
-      },
-      {
-        id: 2,
-        name: '神雕侠侣',
-        link: {name: 'novel', params: {novelname: '神雕侠侣'}}
-      }]
+      user: null,
+      novels: []
     }
   }
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
+<style lang="scss" scoped>
 </style>
