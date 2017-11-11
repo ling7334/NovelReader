@@ -55,6 +55,7 @@
 </template>
 
 <script>
+var md5 = require('md5')
 export default {
   name: 'menubar',
   props: ['title', 'list'],
@@ -69,8 +70,8 @@ export default {
   },
   computed: {
     computeUserAvatar: function () {
-      if (this.user && this.user.hash) {
-        return 'http://www.gravatar.com/avatar/' + this.user.hash + '?d=wavatar'
+      if (this.user && this.user.email) {
+        return 'http://www.gravatar.com/avatar/' + md5(this.user.email) + '?d=wavatar'
       }
       return 'http://www.gravatar.com/avatar/?d=wavatar'
     },
