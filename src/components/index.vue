@@ -1,6 +1,6 @@
 <template>
   <div class="index">
-    <menubar :title="title" :list="novels"></menubar>
+    <!-- <menubar :title="title" :list="novels"></menubar> -->
     <div class="bookcase">
       <md-layout md-gutter>
         <md-layout md-flex-xsmall="100" md-flex-small="100" md-flex-medium="50" md-flex-large="33" md-flex-xlarge="25" v-for="novel in novels" :key="novel.id">
@@ -35,20 +35,21 @@
 export default {
   name: 'index',
   created () {
-    this.axios.get('/novel')
-      .then((response) => {
-        this.novels = response.data
-        console.log(response)
-      })
-      .catch((error) => {
-        alert('无法获取小说列表')
-        console.log(error.message)
-      })
+    this.$nextTick(() => {
+      this.$emit('changeTitle', 'Novel Reader')
+      this.axios.get('/novel')
+        .then((response) => {
+          this.novels = response.data
+          console.log(response)
+        })
+        .catch((error) => {
+          alert('无法获取小说列表')
+          console.log(error.message)
+        })
+    })
   },
   data () {
     return {
-      title: 'Novel Reader',
-      user: null,
       novels: []
     }
   },

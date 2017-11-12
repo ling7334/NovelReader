@@ -1,6 +1,6 @@
 <template>
   <div class="novel">
-    <menubar :title="$route.params.novelname" :list="novels"></menubar>
+    <!-- <menubar :title="$route.params.novelname" :list="novels"></menubar> -->
   </div>
 
 </template>
@@ -9,21 +9,22 @@
 export default {
   name: 'novel',
   created () {
-    this.axios.get('/novel')
-      .then((response) => {
-        this.novels = response.data
-        console.log(response)
-      })
-      .catch((error) => {
-        alert('无法获取小说列表')
-        console.log(error.message)
-      })
+    this.$nextTick(() => {
+      this.$emit('changeTitle', this.$route.params.novelname)
+
+      this.axios.get('/novel')
+        .then((response) => {
+          // this.list = response.data
+          console.log(response)
+        })
+        .catch((error) => {
+          alert('无法获取小说列表')
+          console.log(error.message)
+        })
+    })
   },
   data () {
     return {
-      title: 'Novel Reader',
-      user: null,
-      novels: []
     }
   }
 }
