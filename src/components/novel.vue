@@ -1,8 +1,6 @@
 <template>
   <div class="novel">
-    <!-- <menubar :title="$route.params.novelname" :list="novels"></menubar> -->
   </div>
-
 </template>
 
 <script>
@@ -30,6 +28,5 @@ export default {
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style lang="scss" scoped>
+<style lang="scss">
 </style>

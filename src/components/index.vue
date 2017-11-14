@@ -1,6 +1,5 @@
 <template>
   <div class="index">
-    <!-- <menubar :title="title" :list="novels"></menubar> -->
     <div class="bookcase">
       <md-layout md-gutter>
         <md-layout md-flex-xsmall="100" md-flex-small="100" md-flex-medium="50" md-flex-large="33" md-flex-xlarge="25" v-for="novel in novels" :key="novel.id">
@@ -27,7 +26,6 @@
       </md-layout>
     </div>
   </div>
-
 </template>
 
 <script>
@@ -61,15 +59,14 @@ export default {
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style lang="scss" scoped>
+<style lang="scss">
 .bookcase{
   margin: 5% 5% 5% 5%;
-}
-.card-tile{
-  margin-left: 1%;
-  margin-right: 1%;
-  overflow:hidden;
-  text-overflow:ellipsis;
+  .card-tile{
+    margin-left: 1%;
+    margin-right: 1%;
+    overflow:hidden;
+    text-overflow:ellipsis;
+  }
 }
 </style>
